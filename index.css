@@ -1,0 +1,33 @@
+html, body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  letter-spacing: 3px;
+}
+canvas{
+  width: 800px;
+  height: 600px;
+  border: 1px solid gray;
+}
+
+.disabled {
+  display: none;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.config-menu {
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

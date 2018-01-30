@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+  <!-- vertex shader -->
+<script id="2d-vertex-shader" type="x-shader/x-vertex">
+  attribute vec2 a_position;
+  attribute vec2 a_texCoord;
+  
+  uniform vec2 u_resolution;
+  
+  varying vec2 v_texCoord;
+  
+  void main() {
+     // convert the rectangle from pixels to 0.0 to 1.0
+     vec2 zeroToOne = a_position / u_resolution;
+  
+     // convert from 0->1 to 0->2
+     vec2 zeroToTwo = zeroToOne * 2.0;
+  
+     // convert from 0->2 to -1->+1 (clipspace)
+     vec2 clipSpace = zeroToTwo - 1.0;
+  
+     gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+  
+     // pass the texCoord to the fragment shader
+     // The GPU will interpolate this value between points.
+     v_texCoord = a_texCoord;
+  }
+  </script>
+  <!-- fragment shader -->
+  <script id="2d-fragment-shader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D u_image;  
+  uniform vec2 u_textureSize;
+ 
+  varying vec2 v_texCoord;
+  uniform float pixel_h;
+  uniform float pixel_w;
+ 
+  void main() {
+    float dx = pixel_w*(1./u_textureSize.x);
+    float dy = pixel_h*(1./u_textureSize.y);
+    vec2 coord = vec2(dx*floor(v_texCoord.x/dx), dy*floor(v_texCoord.y/dy));
+    
+    gl_FragColor = texture2D(u_image, coord);
+  }
+  </script>
+
+</head>
+<body>
+  <section class="wrapper">
+    <h1>PIXELATE</h1>
+      <div class="config-menu">
+          <input id="fileInput" type='file' accept="image/*"/>
+          <!-- <label for="pixmageWidth">width</label> <input type="number" id="pixmageWidth" step="1" pattern="\d+" min="0" /> -->
+          <input type="checkbox" value="prop" id="propBox">Keep proportion          
+          <div id="proportionalConfig" class="disabled">
+              <label for="pixelRatio">Pixel.raio</label><input type="number" id="pixelRatio" min="0" value="5"/>
+          </div>
+
+          <div id="pixelSizeConfig">
+              <label for="pixelHeight">Pixel.height</label> <input type="number" id="pixelHeight" min="0" value="5"/>
+              <label for="pixelWidth">Pixel.width</label> <input type="number" id="pixelWidth" min="0" value="5"/>
+          </div>    
+          
+          
+          <a id="saveLink">Save</button>
+        </div>
+      
+      <canvas id="c"></canvas>
+      
+  </section>
+  
+  
+  <script src="webgl-utils.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
