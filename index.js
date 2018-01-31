@@ -10,6 +10,16 @@
     pixelHeight: document.getElementById('pixelHeight'),
     pixelWidth: document.getElementById('pixelWidth')
   }
+
+  // load default
+  let stormtroopers = new Image();
+  stormtroopers.src = 'stormtroopers.jpg';
+  console.log(stormtroopers);
+  stormtroopers.onload = function() {
+    config.image = stormtroopers;
+    render(config);
+  }
+  
   
   // FILE OPEN AND SAVE CONFIG AREA
   document.getElementById('fileInput').addEventListener('change', function() {
@@ -28,8 +38,9 @@
   });
 
   document.getElementById('pixelRatio').addEventListener('change', function(){
-    config.pixelRatio.value = config.pixelHeight.value = config.pixelWidth.value = parseFloat(Math.abs(this.value));
-  })
+    config.pixelHeight.value = config.pixelWidth.value = config.pixelRatio.value = parseFloat(Math.abs(this.value));
+    render(config);
+  });
 
   document.getElementById('pixelHeight').addEventListener('change', function() {
     config.pixelHeight.value = parseFloat(Math.abs(this.value));
@@ -45,14 +56,6 @@
 
 })()
 
-function prepareImageForRender(img) {
-  var image = new Image();
-  image.crossOrigin='Access-Control-Allow-Origin';
-  image.src = img;
-  return image;
-}
-
-//********************************************************
 function readURL(input, config) {
   if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -61,6 +64,8 @@ function readURL(input, config) {
       reader.addEventListener('load', function(e) {
         imageFile = prepareImageForRender(e.target.result);
         config.image = imageFile; // set global current working image
+        document.getElementById('c').width = imageFile.width;
+
         imageFile.onload = function() {
           render(config);
         }       
@@ -70,8 +75,14 @@ function readURL(input, config) {
   }
 }
 
+function prepareImageForRender(img) {
+  var image = new Image();
+  image.crossOrigin='Access-Control-Allow-Origin';
+  image.src = img;
+  return image;
+}
 
-//********************************************************
+
 
 function render(config) {
   // Get A WebGL context
@@ -79,6 +90,8 @@ function render(config) {
   var canvas = document.getElementById("c");
   var gl = canvas.getContext("webgl");
   var image = config.image;
+  canvas.width = image.width;
+  canvas.height = image.height;
   // important to be able to call toDataUrl() and save the image
   gl.getContextAttributes().preserveDrawingBuffer = true;
 
@@ -191,7 +204,7 @@ function render(config) {
   gl.drawArrays(primitiveType, offset, count);
   
 
-  setDownloadLink('saveLink', canvas.toDataURL());
+  setDownloadLink('saveLink', canvas.toDataURL('image/png'));
   
 }
 

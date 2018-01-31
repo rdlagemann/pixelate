@@ -53,28 +53,43 @@
 
 </head>
 <body>
-  <section class="wrapper">
-    <h1>PIXELATE</h1>
-      <div class="config-menu">
-          <input id="fileInput" type='file' accept="image/*"/>
-          <!-- <label for="pixmageWidth">width</label> <input type="number" id="pixmageWidth" step="1" pattern="\d+" min="0" /> -->
-          <input type="checkbox" value="prop" id="propBox">Keep proportion          
-          <div id="proportionalConfig" class="disabled">
-              <label for="pixelRatio">Pixel.raio</label><input type="number" id="pixelRatio" min="0" value="5"/>
-          </div>
+  <div class="wrapper">
+    <h1>
+      <!-- TODO: append span tag through javascript -->
+      <span>P</span><span>I</span><span>X</span><span>E</span><span>L</span><span>A</span><span>T</span><span>E</span>
+    </h1>
+    
+    <div class="menu-container">
+      <div class="file-menu">
+          <input id="fileInput" class="file-chooser" type='file' accept="image/*"/>
+          <label for="fileInput" class="menu-button">Choose an image <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><style>.a{fill:#030104;}</style><polygon points="12.5 10 12.5 13 2.5 13 2.5 10 0.5 10 0.5 13 0.5 15 14.5 15 14.5 13 14.5 10 " class="a"/><polygon points="5.5 12 9.5 12 9.5 5 11.5 5 7.5 0 3.5 5 5.5 5 " class="a"/></svg>
+          </label>
+          <a id="saveLink" class="menu-button">Save File</a>
+      </div>
 
-          <div id="pixelSizeConfig">
-              <label for="pixelHeight">Pixel.height</label> <input type="number" id="pixelHeight" min="0" value="5"/>
-              <label for="pixelWidth">Pixel.width</label> <input type="number" id="pixelWidth" min="0" value="5"/>
-          </div>    
-          
-          
-          <a id="saveLink">Save</button>
-        </div>
+      <div class="config-menu">
+          <div class="config-menu__area1">
+              <label for="propBox">Lock ratio</label><input type="checkbox" value="prop" id="propBox">
+          </div>
+  
+          <div class="config_menu__area2">
+            <div id="proportionalConfig" class="disabled">
+              <label for="pixelRatio">Pixel Size</label><input type="number" id="pixelRatio" min="1" value="5"/>
+            </div>
       
-      <canvas id="c"></canvas>
+            <div id="pixelSizeConfig">
+              <label for="pixelHeight">Height</label><input type="number" id="pixelHeight" min="1" value="5"/>
+              <label for="pixelWidth">Width</label><input type="number" id="pixelWidth" min="1" value="5"/>
+            </div>  
+
+          </div> 
+      </div>      
+        
+    </div>
       
-  </section>
+      <canvas id="c">If you can read this message, than your browser doesn't support this feature(canvas).</canvas>
+      
+  </div>
   
   
   <script src="webgl-utils.js"></script>
