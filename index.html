@@ -1,13 +1,5 @@
 <html lang="en">
 <head>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#2d89ef">
-  <meta name="theme-color" content="#ffffff">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -31,24 +23,30 @@
           <a id="saveLink" class="menu-button">Save File <svg id="download-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.2 512.2" width="512" height="512"><path d="M479 283.9c-1.7-4-5.5-6.6-9.9-6.6H352.3V10.7C352.3 4.8 347.5 0 341.6 0H171c-5.9 0-10.7 4.8-10.7 10.7v266.7H43c-4.3 0-8.2 2.6-9.9 6.6 -1.6 4-0.7 8.6 2.3 11.6l212.8 213.5c2 2 4.7 3.1 7.6 3.1s5.5-1.1 7.6-3.1l213.4-213.5C479.8 292.5 480.7 287.9 479 283.9z" fill="#eccf8d"/></svg> </a>
       </div>
 
-      <fieldset class="config-menu">
-        <legend>Pixel Properties</legend>
+      <div class="config-menu">
+        <!-- <legend>Pixel Properties</legend> -->
           <div class="config-menu__area1">
-              <label for="propBox">Lock ratio</label><input type="checkbox" value="prop" id="propBox">
+            <label for="customCheckbox">
+                Lock Ratio
+            </label>         
+            <label id="customCheckbox" class="lock-label">
+              <input type="checkbox" value="prop" id="propBox" checked="true">
+              <span class="checkmark"></span>
+            </label>
           </div>
   
           <div class="config_menu__area2">
-            <div id="proportionalConfig" class="disabled">
+            <div id="proportionalConfig">
               <label for="pixelRatio">Pixel Size</label><input type="number" id="pixelRatio" min="1" value="5"/>
             </div>
       
-            <div id="pixelSizeConfig">
+            <div id="pixelSizeConfig"  class="disabled">
               <label for="pixelHeight">Height</label><input type="number" id="pixelHeight" min="1" value="5"/>
               <label for="pixelWidth">Width</label><input type="number" id="pixelWidth" min="1" value="5"/>
             </div>  
 
           </div> 
-      </fieldset>      
+      </div>      
         
     </div>
       
@@ -58,5 +56,15 @@
   
   <script src="shaderfy.js"></script>
   <script src="index.js"></script>
+
+  <footer>
+    <p>
+      This project is an example of what you can do with <a href="https://github.com/rdlagemann/shaderfy" target="_blank">shaderfy</a>, an under development Open Source javascript library that allows you to use WebGL shaders in an easy way.
+      <br>
+      Visit the <a href="https://github.com/rdlagemann/pixelate" target="_blank">source code</a>.
+      <br>
+      Developed by <a href="https://github.com/rdlagemann" target="_blank">Rafael Lagemann</a>.
+    </p>
+  </footer>
 </body>
 </html>

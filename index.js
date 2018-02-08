@@ -70,7 +70,7 @@
           imageFile = prepareImageForRender(e.target.result);
           config.image = imageFile;
           config.image.name = input.files[0].name;
-          config.canvas.width = imageFile.width;          
+          config.canvas.width = imageFile.width;     
   
           imageFile.onload = function() {
             if(imageFile.width > screenWidth) {

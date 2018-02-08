@@ -13,6 +13,12 @@ html, body {
   color: #2C1507;
   background: #ECCF8D;
   font-size: 20px;
+  margin:0;
+}
+
+p{
+  margin: 0;
+  padding: 0;
 }
 
 body{
@@ -28,15 +34,46 @@ h1 {
   text-shadow: 2px 2px 0 #AC2005, -2px -2px 0 #84B296;
   margin-bottom: 0;
 }
-
-canvas {
-  
+canvas{
+  width: auto;
 }
+footer {
+  margin-top:200px;
+  font-size: .7rem;
+  background: #BB8138; 
+  color: #2C1507;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 0;
+  left:0;
+  padding: 1rem;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+footer p {
+  margin: 30px 20px 0 20px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+}
+
+footer a:link,
+footer a:visited
+{
+  text-decoration: none;
+  color: #AC2005;
+  font-weight: bold;
+}
+
 
 .subtitle {
   padding: 0;
   margin:0;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
+  text-align: center;
+  /* font-size: 1rem;   */
 }
 
 .subtitle:hover{
@@ -106,6 +143,7 @@ svg {
 #saveLink:hover > #download-svg path {
   fill: #2C1507;
 }
+
 .file-chooser + label:hover > #upload-svg .a{
   fill: #2C1507;
 }
@@ -117,25 +155,27 @@ svg {
 .menu-container{
   width: 80%;
   margin-bottom: 12px;
-  font-size: .8rem;
+  font-size: .7rem;
 }
 .config-menu {
-  border: 3px dotted #BB8138;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  margin-bottom: 30px;
   display: flex;  
   justify-content: flex-start;
-}
-
-.config-menu legend{
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.7rem;
 }
 
 .config-menu__area1 {
   display: flex;
   align-items: center;
-  flex-grow: 0;
+  /* border: 1px solid #BB8138; */
+  /* padding: 2px 5px 2px 5px; */
+  
+}
+
+label[for="customCheckbox"] {
+  margin-right: 5px;  
 }
 
 .config_menu__area2 {
@@ -146,11 +186,60 @@ svg {
   flex-grow: 1;
 }
 
-.config-menu label {
-  font-weight: bold;
-  margin-right: 10px;
-  /* text-transform: uppercase; */
-  font-size: 0.7rem;
+.lock-label {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  float: none;
+}
+
+.lock-label input {
+  /* position: absolute; */
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #BB8138;
+  height: 20px;
+  width: 20px;
+  transition: background-color 200ms ease;
+  
+}
+
+.lock-label:hover input ~ .checkmark{
+  background: #84B296;
+  transition: all 200ms ease;
+
+}
+
+.lock-label input:checked ~ .checkmark{
+  background: #84B296;
+}
+
+.checkmark:after{
+  content:"";
+  position: absolute;
+  display: none;
+}
+.lock-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.lock-label .checkmark:after {
+  left: 7px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .wrapper{
@@ -176,4 +265,68 @@ svg {
   justify-content: flex-start;
   align-items: baseline;
   margin-bottom: 30px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width: 700px){
+  html{
+    font-size: 18px;
+  }
+
+  .file-menu,
+  .menu-container{
+    justify-content: center;
+    width: 100%;
+  }
+  .config-menu__area2{
+    justify-content: center;
+    flex-grow: 0;
+  }
+  
+}
+
+@media only screen and (max-width: 420px){
+  html {
+    font-size: 12px;
+  }
+  .menu-container,
+  input[type="number"],
+  .menu-button{
+    font-size: 1em;
+  }
+
+  .wrapper,
+  .menu-container{
+    width: 100%;
+  }
+
+  footer{
+    font-size: .7em;
+  }
+}
+
+@media only screen and (max-width: 300px){
+  html {
+    font-size: 8px;
+  }
+ .menu-container,
+ input[type="number"],
+ .menu-button{
+   font-size: .8em;
+ }
+
+ svg{
+   display: none;
+ }
+
+ footer {
+   font-size: .5em;
+   padding: 0;
+   text-align: center;
+ }
+
+ footer p{
+   line-height: 15px;
+   margin-bottom: 20px;
+ }
 }
